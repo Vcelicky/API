@@ -9,7 +9,7 @@ $response = array("error" => FALSE);
 if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password'])) {
  
     // receiving the post params
-    $name = $_POST['name'];
+    $name =  $_POST['name'];
     $email = $_POST['email'];
     $password = $_POST['password'];
  
@@ -25,11 +25,10 @@ if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password'])
         if ($user) {
             // user stored successfully
             $response["error"] = FALSE;
-            $response["uid"] = $user["unique_id"];
-            $response["user"]["name"] = $user["name"];
-            $response["user"]["email"] = $user["email"];
-            $response["user"]["created_at"] = $user["created_at"];
-            $response["user"]["updated_at"] = $user["updated_at"];
+            $response["uid"] = $user;
+            $response["user"]["name"] = $name;
+            $response["user"]["email"] = $email;
+            $response["user"]["created_at"] = time();
             echo json_encode($response);
         } else {
             // user failed to store
