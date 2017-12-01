@@ -1,5 +1,6 @@
 <?php
 require_once 'include/DB_Functions.php';
+use \Firebase\JWT\JWT;
 $db = new DB_Functions();
  
 // json response array
@@ -22,6 +23,11 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 	    $response["role_id"] = $user[3];
         $response["user"]["name"] = $user[0];
         $response["user"]["email"] = $user[1];
+        $response["user"]["email"] = $user[1];
+
+        $token = array();
+        $token['id'] = $response["id"];
+        $response["token"] = JWT::encode($token, 'something');
         echo json_encode($response);
     } else {
         // user is not found with the credentials
