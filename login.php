@@ -7,7 +7,7 @@ $db = new DB_Functions();
 $response = array("error" => FALSE);
 
 
-if (isset($_POST['email']) && isset($_POST['password'])) {
+if (isset($_POST['email']) && isset($_POST['password']) && (count($_POST['email']) == 0) && (count($_POST['password']) == 0)) {
  
     // receiving the post params
     $email = $_POST['email'];
